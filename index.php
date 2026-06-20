@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Jogo da Forca PHP</title>
+    <title>Jogo da Forca</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Jogo da Forca</h1>
+<?php
 
-        <h2>Palavra:</h2>
+$palavra = "CASAS";
 
-        <div class="palavra">
-            _ _ _ _
-        </div>
+$letras = str_split($palavra);
 
-        <form>
-            <input type="text" maxlength="1" placeholder="Digite uma letra">
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
+?>
+
+<h1>Jogo da Forca</h1>
+
+<div class="forca">
+
+<?php
+foreach($letras as $letra){
+    echo "_ ";
+}
+?>
+
+</div>
 
 </body>
 </html>
