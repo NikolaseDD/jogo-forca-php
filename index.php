@@ -36,6 +36,18 @@ foreach ($_SESSION['chutes'] as $chute) {
 }
 
 $tentativasRestantes = $maxErros - count($erros);
+
+$venceu = true;
+
+foreach ($letras as $letra) {
+
+    if (!in_array($letra, $_SESSION['chutes'])) {
+        $venceu = false;
+        break;
+    }
+}
+
+$perdeu = $tentativasRestantes <= 0;
 ?>
 
 <!DOCTYPE html>
@@ -66,10 +78,14 @@ foreach ($letras as $letra) {
 
 <br>
 
+<?php if (!$venceu && !$perdeu) { ?>
+
 <form method="POST">
     <input type="text" name="letra" maxlength="1" required>
     <button type="submit">Chutar</button>
 </form>
+
+<?php } ?>
 
 <h3>Letras digitadas:</h3>
 
@@ -96,6 +112,15 @@ foreach ($erros as $erro) {
 <p>
 <?php echo $tentativasRestantes; ?>
 </p>
+
+<?php if ($venceu) { ?>
+    <h2>🏆 Você venceu!</h2>
+<?php } ?>
+
+<?php if ($perdeu) { ?>
+    <h2>💀 Você perdeu!</h2>
+    <p>A palavra era: <strong><?php echo $palavra; ?></strong></p>
+<?php } ?>
 
 <form method="POST">
     <button type="submit" name="reiniciar">
